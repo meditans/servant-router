@@ -1,3 +1,5 @@
+resolver: lts-7.2
+
 nix:
   packages:
   - git
@@ -7,27 +9,31 @@ nix:
   - zlib
   # Silly build tool requirements... https://github.com/commercialhaskell/stack/issues/595
   - haskellPackages.gtk2hs-buildtools
+
 packages:
 - '.'
 - location:
-    git: https://github.com/reflex-frp/reflex
-    commit: 50d298cb1b5ed850ec017e2aab10ffa1fb5466b0
+    git: https://github.com/meditans/reflex
+    commit: bac2e0e56e9ba3e8265dbff853a059978ef01efb
+  extra-dep: true
 - location:
-    git: https://github.com/reflex-frp/reflex-dom
-    commit: 8d203761ab4cbdb2060a48d980fbb6acbce21c5d
+    git: https://github.com/Arguggi/reflex-dom.git
+    commit: 767c9b7625c61208b552f64b95719edac18a6e29
+  extra-dep: true
 - location:
-    git: https://github.com/reflex-frp/reflex-dom-contrib
+    git: https://github.com/reflex-frp/reflex-dom-contrib/
     commit: abf986d13e2a690a4d117b4810ac0a50296333f4
-- location:
-    git: https://github.com/gtk2hs/gtk2hs
-    commit: eee61d84edf1dd44f8d380d7d7cae2405de50124
-  subdirs:
-  - tools
-  - glib
-  - gio
-  - gtk
-  - cairo
-  - pango
+  extra-dep: true
+# - location:
+#     git: https://github.com/gtk2hs/gtk2hs
+#     commit: eee61d84edf1dd44f8d380d7d7cae2405de50124
+#   subdirs:
+#   - tools
+#   - glib
+#   - gio
+#   - gtk
+#   - cairo
+#   - pango
 - location:
     git: https://github.com/ryantrinkle/webkit
     commit: be8046844e8108f88407a2e5548d0c19911cb012
@@ -37,8 +43,10 @@ packages:
 - location:
     git: https://github.com/ryantrinkle/timezone-series
     commit: f8dece8c016db6476e2bb0d4f972769a76f6ff40
+
 extra-deps:
 - ref-tf-0.4.0.1
 - ghcjs-dom-0.2.4.0
 - zenc-0.1.1
-resolver: lts-7.7
+
+#resolver: lts-7.7
