@@ -144,12 +144,12 @@ runRouteLoc loc layout page =
   let routing = route layout (Proxy :: Proxy m) (Proxy :: Proxy a) page
   in routeLoc loc routing
 
--- | Use a handler to route a location, represented as a 'String'.
+-- | Use a handler to route a location, represented as a 'Text'.
 -- All handlers must, in the end, return @m a@.
 -- 'routeLoc' will choose a route and return its result.
 runRoute :: forall layout m a. (HasRouter layout, Monad m)
-         => String -> Proxy layout -> RouteT layout m a -> m (Either RoutingError a)
-runRoute uriString layout page = case uriToLocation <$> parseURIReference uriString of
+         => Text -> Proxy layout -> RouteT layout m a -> m (Either RoutingError a)
+runRoute uriText layout page = case uriToLocation <$> parseURIReference (T.unpack uriText) of
   Nothing -> return $ Left FailFatal
   Just loc -> runRouteLoc loc layout page
 
